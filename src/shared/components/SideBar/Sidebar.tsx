@@ -1,12 +1,12 @@
-import { Home } from '@mui/icons-material';
-import { Avatar, Box, Divider, Drawer, List, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme } from '@mui/material';
+import { Avatar, Box, Divider, Drawer, List, useMediaQuery, useTheme } from '@mui/material';
 import { useDrawerContext } from '../../contexts';
 import { TChildrenProps } from '../../types';
+import { MenuItem } from './MenuItem';
 
 export function Sidebar({ children }: TChildrenProps): JSX.Element{
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const { isDrawerOpen, toggleDrawer } = useDrawerContext();
+  const { isDrawerOpen, toggleDrawer, drawerOptions } = useDrawerContext();
 
   return (
     <>
@@ -23,12 +23,14 @@ export function Sidebar({ children }: TChildrenProps): JSX.Element{
           <Divider />
           <Box flex={1}>
             <List component='nav'>
-              <ListItemButton>
-                <ListItemIcon>
-                  <Home />
-                </ListItemIcon>
-                <ListItemText primary='Página Inicial'/>
-              </ListItemButton>
+              {drawerOptions.map((drawerOption, index) => (
+                <MenuItem key={index} 
+                  to={drawerOption.path}
+                  icon={drawerOption.icon}
+                  label={drawerOption.label}
+                  onClick={smDown ? toggleDrawer : undefined}
+                />
+              ))}
             </List>
           </Box>
         </Box>
