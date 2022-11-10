@@ -1,8 +1,8 @@
 import { Home } from '@mui/icons-material';
 import { Avatar, Box, Divider, Drawer, List, ListItemButton, ListItemIcon, ListItemText, useTheme } from '@mui/material';
-import React from 'react';
+import { TChildrenProps } from '../../types';
 
-export function Sidebar({ children }: { children: React.ReactNode}): JSX.Element{
+export function Sidebar({ children }: TChildrenProps): JSX.Element{
   const theme = useTheme();
 
   return (
