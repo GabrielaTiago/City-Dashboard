@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import { AppThemeProvider } from './shared/contexts';
+import { AppThemeProvider, DrawerProvider } from './shared/contexts';
 import {Sidebar} from './shared/components';
 
 import AppRoutes from './routes';
@@ -7,11 +7,13 @@ import AppRoutes from './routes';
 function App() {
   return (
     <AppThemeProvider>
-      <BrowserRouter>
-        <Sidebar>
-          <AppRoutes />
-        </Sidebar>
-      </BrowserRouter>
+      <DrawerProvider>
+        <BrowserRouter>
+          <Sidebar>
+            <AppRoutes />
+          </Sidebar>
+        </BrowserRouter>
+      </DrawerProvider>
     </AppThemeProvider>
   );
 }
