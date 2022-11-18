@@ -3,6 +3,7 @@ import { teal, deepPurple } from '@mui/material/colors';
 
 export const DarkTheme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
       main: deepPurple[800],
       dark: deepPurple[900],
@@ -20,4 +21,9 @@ export const DarkTheme = createTheme({
       paper: '#303134',
     },
   },
+  typography: {
+    allVariants: {
+      color: 'white'
+    }
+  }
 });

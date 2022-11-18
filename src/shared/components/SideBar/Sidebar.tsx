@@ -2,6 +2,7 @@ import { Avatar, Box, Divider, Drawer, List, useMediaQuery, useTheme } from '@mu
 import { useDrawerContext } from '../../contexts';
 import { TChildrenProps } from '../../types';
 import { MenuItem } from './MenuItem';
+import ToggleTheme from './ToggleTheme';
 
 export function Sidebar({ children }: TChildrenProps): JSX.Element{
   const theme = useTheme();
@@ -32,6 +33,9 @@ export function Sidebar({ children }: TChildrenProps): JSX.Element{
                 />
               ))}
             </List>
+          </Box>
+          <Box  sx={{ m: 2 }}  display='flex' alignItems='center' justifyContent='center'>
+            <ToggleTheme />
           </Box>
         </Box>
       </Drawer>
