@@ -5,9 +5,10 @@ import { useDrawerContext } from '../contexts';
 interface ILayoutPageBase {
   children: ReactNode;
   title: string;
+  taskBar: ReactNode;
 }
 
-export function LayoutPageBase({ children, title }: ILayoutPageBase) {
+export function LayoutPageBase({ children, title, taskBar }: ILayoutPageBase) {
   const { toggleDrawer } = useDrawerContext();
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
@@ -37,6 +38,13 @@ export function LayoutPageBase({ children, title }: ILayoutPageBase) {
           {title}
         </Typography>
       </Box>
+      {taskBar ? 
+        <Box>
+          {taskBar}
+        </Box>
+        :
+        <></>
+      }
       <Box flex={1} overflow='auto'>
         {children}
       </Box>
