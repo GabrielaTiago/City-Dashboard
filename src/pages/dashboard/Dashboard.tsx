@@ -1,10 +1,10 @@
-import { ToolBar } from '../../shared/components';
+import { SearchBar } from '../../shared/components';
 import { LayoutPageBase } from '../../shared/layouts';
 
 export function Dashboard() {
   return (
     <LayoutPageBase title='Página Inicial' taskBar={(
-      <ToolBar searchInput buttonText='Novo'/>
+      <SearchBar searchInput buttonText='Novo'/>
     )}>
       
     </LayoutPageBase>

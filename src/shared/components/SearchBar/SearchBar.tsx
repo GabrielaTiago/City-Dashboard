@@ -1,7 +1,7 @@
 import { Add } from '@mui/icons-material';
 import { Box, Button, Paper, TextField, useTheme } from '@mui/material';
 
-interface IToolBarProps {
+interface ISearchBarProps {
   searchText?: string;
   searchInput?: boolean;
   onChangeSearchText?: (newText: string) => void;
@@ -10,7 +10,7 @@ interface IToolBarProps {
   onClickButton?: () => void;
 }
 
-export function ToolBar(
+export function SearchBar(
   { 
     searchText = '',
     searchInput = false,
@@ -18,7 +18,7 @@ export function ToolBar(
     buttonText = '',
     displayButton = true,
     onClickButton
-  }: IToolBarProps) {
+  }: ISearchBarProps) {
   const theme = useTheme();
 
   return(
