@@ -1,5 +1,5 @@
 import { Add, Delete, KeyboardReturnRounded, Save } from '@mui/icons-material';
-import { Box, Button, Divider, Paper, useTheme } from '@mui/material';
+import { Box, Button, Divider, Paper, Skeleton, useTheme } from '@mui/material';
 
 interface IDetailToolProp {
     textNewButton?: string;
@@ -9,6 +9,12 @@ interface IDetailToolProp {
     displaySaveButton?: boolean;
     displayDeleteButton?:boolean;
     displaySaveAndCloseButton?: boolean;
+
+    displayLoadingNewButton?: boolean;
+    displayLoadingReturnButton?: boolean;
+    displayLoadingSaveButton?: boolean;
+    displayLoadingDeleteButton?: boolean;
+    displayLoadingSaveAndCloseButton?: boolean;
 
     clickInNew?: () => void;
     clickInReturn?: () => void;
@@ -26,6 +32,12 @@ export function DetailTool(
     displaySaveButton = true,
     displayDeleteButton = true,
     displaySaveAndCloseButton = false,
+
+    displayLoadingNewButton = false,
+    displayLoadingReturnButton = false,
+    displayLoadingSaveButton = false,
+    displayLoadingDeleteButton = false,
+    displayLoadingSaveAndCloseButton = false,
 
     clickInNew,
     clickInReturn,
@@ -45,7 +57,7 @@ export function DetailTool(
       height={theme.spacing(5)}
       component={Paper}
     >
-      {displaySaveButton && (
+      {(displaySaveButton && !displayLoadingSaveButton) && (
         <Button
           color='primary'
           variant='contained'
@@ -56,7 +68,12 @@ export function DetailTool(
             Salvar
         </Button>
       )}
-      {displaySaveAndCloseButton && (
+
+      {displayLoadingSaveButton && (
+        <Skeleton width={109} height={64} />
+      )}
+
+      {(displaySaveAndCloseButton && !displayLoadingSaveAndCloseButton) &&(
         <Button
           color='primary'
           variant='outlined'
@@ -67,7 +84,12 @@ export function DetailTool(
           Salvar e Voltar
         </Button>
       )}
-      {displayNewButton && (
+
+      {displayLoadingSaveAndCloseButton && (
+        <Skeleton width={180} height={64} />
+      )}
+
+      {(displayNewButton && !displayLoadingNewButton) && (
         <Button
           color='primary'
           variant='outlined'
@@ -78,7 +100,12 @@ export function DetailTool(
           {textNewButton}
         </Button>
       )}
-      {displayDeleteButton && (
+
+      {displayLoadingNewButton && (
+        <Skeleton width={97} height={63} />
+      )}
+
+      {(displayDeleteButton && !displayLoadingDeleteButton) && (
         <Button
           color='primary'
           variant='outlined'
@@ -89,10 +116,14 @@ export function DetailTool(
           Deletar
         </Button>
       )}
+
+      {displayLoadingDeleteButton && (
+        <Skeleton width={118} height={64} />
+      )}
       
       <Divider  variant='middle' orientation='vertical' />
       
-      {displayReturnButton && (
+      {(displayReturnButton && !displayLoadingReturnButton) && (
         <Button
           color='primary'
           variant='outlined'
@@ -102,6 +133,10 @@ export function DetailTool(
         >
           Voltar
         </Button>
+      )}
+
+      {displayLoadingReturnButton && (
+        <Skeleton width={110} height={64} />
       )}
     </Box>
   );
