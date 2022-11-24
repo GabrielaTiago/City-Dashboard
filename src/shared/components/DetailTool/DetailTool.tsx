@@ -1,5 +1,14 @@
 import { Add, Delete, KeyboardReturnRounded, Save } from '@mui/icons-material';
-import { Box, Button, Divider, Paper, Skeleton, useTheme } from '@mui/material';
+import { 
+  Box,
+  Button,
+  Divider,
+  Paper,
+  Skeleton,
+  Theme,
+  Typography,
+  useMediaQuery,
+  useTheme } from '@mui/material';
 
 interface IDetailToolProp {
     textNewButton?: string;
@@ -45,6 +54,8 @@ export function DetailTool(
     clickInDelete,
     clickInSaveAndClose,
   }: IDetailToolProp): JSX.Element {
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const theme = useTheme();
   
   return(
@@ -65,7 +76,14 @@ export function DetailTool(
           disableElevation
           onClick={clickInSave}
         >
+          <Typography 
+            variant='button'
+            whiteSpace='nowrap'
+            textOverflow='elipses'
+            overflow='hidden'
+          >
             Salvar
+          </Typography>
         </Button>
       )}
 
@@ -73,23 +91,37 @@ export function DetailTool(
         <Skeleton width={109} height={64} />
       )}
 
-      {(displaySaveAndCloseButton && !displayLoadingSaveAndCloseButton) &&(
-        <Button
-          color='primary'
-          variant='outlined'
-          startIcon={<Save />}
-          disableElevation
-          onClick={clickInSaveAndClose}
-        >
-          Salvar e Voltar
-        </Button>
-      )}
+      {
+        (
+          displaySaveAndCloseButton &&
+          !displayLoadingSaveAndCloseButton &&
+          !smDown &&
+          !mdDown
+        ) && (
+          <Button
+            color='primary'
+            variant='outlined'
+            startIcon={<Save />}
+            disableElevation
+            onClick={clickInSaveAndClose}
+          >
+            <Typography
+              variant='button'
+              whiteSpace='nowrap'
+              textOverflow='elipses'
+              overflow='hidden'
+            >
+              Salvar e Voltar
+            </Typography>
+          </Button>
+        )
+      }
 
-      {displayLoadingSaveAndCloseButton && (
+      {(displayLoadingSaveAndCloseButton && !smDown && !mdDown) && (
         <Skeleton width={180} height={64} />
       )}
 
-      {(displayNewButton && !displayLoadingNewButton) && (
+      {(displayNewButton && !displayLoadingNewButton && !smDown) && (
         <Button
           color='primary'
           variant='outlined'
@@ -97,11 +129,18 @@ export function DetailTool(
           disableElevation
           onClick={clickInNew}
         >
-          {textNewButton}
+          <Typography
+            variant='button'
+            whiteSpace='nowrap'
+            textOverflow='elipses'
+            overflow='hidden'
+          >
+            {textNewButton}
+          </Typography>
         </Button>
       )}
 
-      {displayLoadingNewButton && (
+      {(displayLoadingNewButton && !smDown) && (
         <Skeleton width={97} height={63} />
       )}
 
@@ -113,7 +152,14 @@ export function DetailTool(
           disableElevation
           onClick={clickInDelete}
         >
-          Deletar
+          <Typography
+            variant='button'
+            whiteSpace='nowrap'
+            textOverflow='elipses'
+            overflow='hidden'
+          >
+           Deletar
+          </Typography>
         </Button>
       )}
 
@@ -121,7 +167,14 @@ export function DetailTool(
         <Skeleton width={118} height={64} />
       )}
       
-      <Divider  variant='middle' orientation='vertical' />
+      {
+        (
+          displayReturnButton && 
+          (displayNewButton || displayDeleteButton || displayLoadingSaveButton || displayLoadingSaveAndCloseButton)
+        ) && (
+          <Divider  variant='middle' orientation='vertical' />
+        )    
+      }
       
       {(displayReturnButton && !displayLoadingReturnButton) && (
         <Button
@@ -131,7 +184,14 @@ export function DetailTool(
           disableElevation
           onClick={clickInReturn}
         >
-          Voltar
+          <Typography
+            variant='button'
+            whiteSpace='nowrap'
+            textOverflow='elipses'
+            overflow='hidden'
+          >
+            Voltar
+          </Typography>
         </Button>
       )}
 

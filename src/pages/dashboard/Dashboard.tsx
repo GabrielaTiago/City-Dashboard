@@ -5,7 +5,7 @@ export function Dashboard() {
   return (
     <LayoutPageBase title='Página Inicial' taskBar={(
       // <SearchBar searchInput buttonText='Novo'/>
-      <DetailTool displaySaveAndCloseButton />
+      <DetailTool displaySaveAndCloseButton displayNewButton />
     )}>
       
     </LayoutPageBase>
