@@ -1,7 +1,7 @@
 import { enviroment } from "../environments";
 import { instance } from "./config";
 
-interface IListPerson {
+export interface IListPerson {
   id: number;
   email: string;
   fullName: string;
@@ -14,7 +14,7 @@ type TPersonTotalCount = {
 }
 
 export async function getAll(page: number, filter: string): Promise<TPersonTotalCount | Error> {
-  const relativeUrl = `/person?_page=${page}&_limit=${enviroment.LINE_LIMIT}&city_like=${filter}`;
+  const relativeUrl = `/people?_page=${page}&_limit=${enviroment.LINE_LIMIT}&fullName_like=${filter}`;
   
   try {
     const { data, headers } = await instance.get(relativeUrl);
@@ -83,7 +83,7 @@ export async function deleteById(id: number): Promise<void | Error> {
 }
 
 
-export const CitiesService = {
+export const PeopleService = {
   getAll,
   getById,
   create,
