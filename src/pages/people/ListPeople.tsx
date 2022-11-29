@@ -9,14 +9,14 @@ import { usePeopleContext } from '../../shared/contexts';
 export function ListPeople(): JSX.Element {
   const delay: number = 500;
   const { debounce } = useDebounce(delay, true);
-  const { setRows, setIsLoading } = usePeopleContext();
-  const { person, setSearchParams } = usePeopleContext();
+  const { setRows, setIsLoading, setTotalCount } = usePeopleContext();
+  const { person, page, setSearchParams } = usePeopleContext();
   
   useEffect(() => {
     setIsLoading(true);
 
     debounce(() => {
-      PeopleService.getAll(1, person)
+      PeopleService.getAll(page, person)
         .then((res) => {
           setIsLoading(false);
 
@@ -25,10 +25,11 @@ export function ListPeople(): JSX.Element {
             return;
           } else {
             setRows(res.data);
+            setTotalCount(res.totalCount);
           }
         });
     });
-  },[person]);
+  },[person, page]);
 
   return (
     <LayoutPageBase 
@@ -38,7 +39,7 @@ export function ListPeople(): JSX.Element {
           buttonText='Nova'
           searchInput
           searchText={person}
-          onChangeSearchText={(text) => setSearchParams({ person: text }, { replace: true })}
+          onChangeSearchText={(text) => setSearchParams({ person: text, page: '1' }, { replace: true })}
         />
       }
     >

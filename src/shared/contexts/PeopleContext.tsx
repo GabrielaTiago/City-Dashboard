@@ -1,5 +1,5 @@
 import { createContext,useContext, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { NavigateOptions, URLSearchParamsInit, useSearchParams } from 'react-router-dom';
 import { IListPerson } from '../services/personApi';
 import { TChildrenProps } from '../types';
 
@@ -11,8 +11,9 @@ interface IPeopleContextProps {
   totalCount: number;
   setTotalCount: (value: number) => void;
   searchParams: URLSearchParams;
-  setSearchParams: (params?: any, replace?: any)  => void;
+  setSearchParams: (params?: URLSearchParamsInit, navigateOpts?: NavigateOptions)  => void;
   person: string;
+  page: number;
 }
 
 const PeopleContext = createContext({} as IPeopleContextProps);
@@ -31,6 +32,10 @@ export function PeopleProvider({ children }: TChildrenProps){
     return searchParams.get('person') || '';
   }, [searchParams]);
 
+  const page = useMemo(() => {
+    return Number(searchParams.get('page') || '1');
+  }, [searchParams]);
+  
   return (
     <PeopleContext.Provider 
       value={
@@ -44,6 +49,7 @@ export function PeopleProvider({ children }: TChildrenProps){
           searchParams,
           setSearchParams,
           person,
+          page
         }
       }
     >
