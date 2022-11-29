@@ -1,17 +1,21 @@
 import { 
-    Paper,
-    Skeleton,
-    Table,
-    TableBody, 
-    TableCell, 
-    TableContainer, 
-    TableHead, 
-    TableRow 
-  } from '@mui/material';
+  Paper,
+  Skeleton,
+  Table,
+  TableBody, 
+  TableCell, 
+  TableContainer, 
+  TableFooter, 
+  TableHead, 
+  TableRow,
+  Typography,
+} from '@mui/material';
 import { usePeopleContext } from '../../../shared/contexts';
+import { enviroment } from '../../../shared/environments';
 
 export function TableOfPeople() {
   const { rows, isLoading } = usePeopleContext();
+  
   return (
     <TableContainer component={Paper} variant='outlined' sx={{ m: 1, width: 'auto', overflowX: 'hidden' }}>
       <Table>
@@ -33,6 +37,16 @@ export function TableOfPeople() {
             </TableRow>
             ))}
         </TableBody>
+
+          {(rows.length === 0 && !isLoading) && (
+           <TableFooter>
+              <TableRow>
+                <TableCell colSpan={3} sx={{ textAlign: 'center'}}>
+                  <Typography variant='caption'>{enviroment.EMPTY_LIST}</Typography>
+                </TableCell>              
+              </TableRow>
+           </TableFooter>
+          )}
 
       </Table>
     </TableContainer>   
