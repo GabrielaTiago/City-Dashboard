@@ -34,7 +34,7 @@ export async function getAll(page: number, filter: string): Promise<TPersonTotal
 
 export async function getById(id: number): Promise<IListPerson | Error> {
   try {
-    const { data } = await instance.get(`person/${id}`);
+    const { data } = await instance.get(`people/${id}`);
     
     if(data) {
       return data;
@@ -49,7 +49,7 @@ export async function getById(id: number): Promise<IListPerson | Error> {
 
 export async function create(body: Omit<IListPerson, 'id'>): Promise<number | Error> {
   try {
-    const { data } = await instance.post<IListPerson>('/person', body);
+    const { data } = await instance.post<IListPerson>('/people', body);
 
     if(data) {
       return data.id;
@@ -64,7 +64,7 @@ export async function create(body: Omit<IListPerson, 'id'>): Promise<number | Er
 
 export async function updateById(id: number, body: IListPerson): Promise<void | Error> {
   try {
-    await instance.put(`/person/${id}`, body);
+    await instance.put(`people/${id}`, body);
 
   } catch (err) {
     console.error(err);
@@ -74,7 +74,7 @@ export async function updateById(id: number, body: IListPerson): Promise<void | 
 
 export async function deleteById(id: number): Promise<void | Error> {
   try {
-    await instance.delete(`/person/${id}`);
+    await instance.delete(`people/${id}`);
 
   } catch (err) {
     console.error(err);
