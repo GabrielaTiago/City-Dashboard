@@ -30,23 +30,41 @@ export function TableOfPeople() {
 
         <TableBody>
             {rows.map((row, index) => (
-            <TableRow key={index}>
+              <TableRow key={index}>
                 <TableCell>{isLoading ? <Skeleton animation='wave' width='auto' height='auto' /> : (index+1)}</TableCell>
-                <TableCell>{isLoading ? <Skeleton animation='wave' width='auto' height='auto' /> : (row.fullName)}</TableCell>
-                <TableCell>{isLoading ? <Skeleton animation='wave' width='auto' height='auto' /> : (row.email)}</TableCell>
-            </TableRow>
+                <TableCell
+                  sx={{ 
+                    maxWidth: '7rem',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}
+                >
+                  {isLoading ? <Skeleton animation='wave' width='auto' height='auto' /> : (row.fullName)}
+                </TableCell>
+                <TableCell
+                  sx={{ 
+                    maxWidth: '7rem',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}
+                >
+                  {isLoading ? <Skeleton animation='wave' width='auto' height='auto' /> : (row.email)}
+                </TableCell>
+              </TableRow>
             ))}
         </TableBody>
 
-          {(rows.length === 0 && !isLoading) && (
-           <TableFooter>
-              <TableRow>
-                <TableCell colSpan={3} sx={{ textAlign: 'center'}}>
-                  <Typography variant='caption'>{enviroment.EMPTY_LIST}</Typography>
-                </TableCell>              
-              </TableRow>
-           </TableFooter>
-          )}
+        {(rows.length === 0 && !isLoading) && (
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={3} sx={{ textAlign: 'center'}}>
+                <Typography variant='caption'>{enviroment.EMPTY_LIST}</Typography>
+              </TableCell>              
+            </TableRow>
+          </TableFooter>
+        )}
 
       </Table>
     </TableContainer>   
