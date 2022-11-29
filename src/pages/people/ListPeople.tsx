@@ -1,5 +1,4 @@
-import { useEffect, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { SearchBar } from '../../shared/components';
 import { useDebounce } from '../../shared/hooks';
 import { LayoutPageBase } from '../../shared/layouts';
@@ -10,13 +9,9 @@ import { usePeopleContext } from '../../shared/contexts';
 export function ListPeople(): JSX.Element {
   const delay: number = 500;
   const { debounce } = useDebounce(delay, true);
-  const [searchParams, setSearchParams] = useSearchParams();
   const { setRows, setIsLoading } = usePeopleContext();
+  const { person, setSearchParams } = usePeopleContext();
   
-  const person = useMemo(() => {
-    return searchParams.get('person') || '';
-  }, [searchParams]);
-
   useEffect(() => {
     setIsLoading(true);
 

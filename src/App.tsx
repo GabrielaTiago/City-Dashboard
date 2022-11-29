@@ -6,17 +6,17 @@ import AppRoutes from './routes';
 
 function App() {
   return (
-    <PeopleProvider>
-      <AppThemeProvider>
+    <AppThemeProvider>
         <DrawerProvider>
           <BrowserRouter>
-            <Sidebar>
-              <AppRoutes />
-            </Sidebar>
+            <PeopleProvider>
+              <Sidebar>
+                <AppRoutes />
+              </Sidebar>
+            </PeopleProvider>
           </BrowserRouter>
         </DrawerProvider>
       </AppThemeProvider>
-    </PeopleProvider>
   );
 }
 
