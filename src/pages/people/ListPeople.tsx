@@ -11,18 +11,19 @@ export function ListPeople(): JSX.Element {
   const delay: number = 500;
   const { debounce } = useDebounce(delay, true);
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const { setRows } = usePeopleContext();
+  const { setRows, setIsLoading } = usePeopleContext();
   
   const person = useMemo(() => {
     return searchParams.get('person') || '';
   }, [searchParams]);
 
   useEffect(() => {
+    setIsLoading(true);
 
     debounce(() => {
       PeopleService.getAll(1, person)
         .then((res) => {
+          setIsLoading(false);
 
           if(res instanceof Error) {
             alert(res.message);
