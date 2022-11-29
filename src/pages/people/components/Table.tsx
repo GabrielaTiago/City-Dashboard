@@ -1,4 +1,6 @@
+import { CreateOutlined, DeleteForeverOutlined } from '@mui/icons-material';
 import { 
+  IconButton,
   Pagination,
   Paper,
   Skeleton,
@@ -13,10 +15,28 @@ import {
 } from '@mui/material';
 import { usePeopleContext } from '../../../shared/contexts';
 import { enviroment } from '../../../shared/environments';
+import { IListPerson, PeopleService } from '../../../shared/services/personApi';
 
 export function TableOfPeople() {
-  const { rows, isLoading, totalCount, page, setSearchParams } = usePeopleContext();
+  const { rows, setRows, isLoading, totalCount, page, setSearchParams } = usePeopleContext();
   const pagination = Math.ceil(totalCount / enviroment.LINE_LIMIT);
+
+  function handleDelete(id: number) {
+    if(confirm('Realemnte deseja apagar?')){
+      PeopleService.deleteById(id)
+        .then( res => {
+          console.log(res);
+          
+          if(res instanceof Error) {
+            alert(res.message);
+          } else {
+            const oldRows: IListPerson[] = [...rows.filter((row) => row.id !== id )];
+            setRows(oldRows);
+            alert('Registro apagado com sucesso')
+          }
+        });
+    }
+  }
 
   return (
     <TableContainer component={Paper} variant='outlined' sx={{ m: 1, width: 'auto', overflowX: 'hidden' }}>
@@ -33,7 +53,20 @@ export function TableOfPeople() {
         <TableBody>
             {rows.map((row, index) => (
               <TableRow key={index}>
-                <TableCell>{isLoading ? <Skeleton animation='wave' width='auto' height='auto' /> : (index+1)}</TableCell>
+                <TableCell align='inherit'>
+                  {isLoading ? 
+                    <Skeleton animation='wave' width='auto' height='auto' /> 
+                    :
+                    <>
+                      <IconButton size='small' color='error' onClick={() => handleDelete(row.id)}>
+                        <DeleteForeverOutlined />
+                      </IconButton>
+                      <IconButton size='small' color='success'>
+                        <CreateOutlined />
+                      </IconButton>
+                    </>
+                    }
+                </TableCell>
                 <TableCell
                   sx={{ 
                     maxWidth: '7rem',

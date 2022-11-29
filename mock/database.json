@@ -1,106 +1,88 @@
 {
-    "people": [
-        {
-            "id": 1,
-            "email": "gabriela@teste.com",
-            "fullName": "Gabriela",
-            "cityId": 1
-        },
-        {
-            "id": 2,
-            "email": "richarlison@fifa.com",
-            "fullName": "Richarlison de Andrade",
-            "cityId": 9
-        },
-        {
-            "id": 3,
-            "email": "carlos@gmail.com",
-            "fullName": "Carlos Silva",
-            "cityId": 1
-        },
-        {
-            "id": 5,
-            "email": "alfredo@gmail.com",
-            "fullName": "Alfredo Pereira",
-            "cityId": 1
-        },
-        {
-            "id": 6,
-            "email": "Juca@gmail.com",
-            "fullName": "Juca Delgado",
-            "cityId": 1
-        },
-        {
-            "id": 7,
-            "email": "maria@gmail.com",
-            "fullName": "Maria Silva",
-            "cityId": 3
-        },
-        {
-            "id": 8,
-            "email": "carlos@gmail.com",
-            "fullName": "Carlos Silva",
-            "cityId": 1
-        },
-        {
-            "id": 9,
-            "email": "pedro@gmail.com",
-            "fullName": "Pedro Silva",
-            "cityId": 1
-        },
-        {
-            "id": 10,
-            "email": "alfredo@gmail.com",
-            "fullName": "Alfredo Silva",
-            "cityId": 5
-        },
-        {
-            "id": 11,
-            "email": "alfredo@gmail.com",
-            "fullName": "Alfredo Silva",
-            "cityId": 5
-        },
-        {
-            "id": 12,
-            "email": "Juca@gmail.com",
-            "fullName": "Juca Silva",
-            "cityId": 5
-        },
-        {
-            "id": 13,
-            "email": "maria@gmail.com",
-            "fullName": "Maria Silva",
-            "cityId": 5
-        },
-        {
-            "id": 14,
-            "email": "carlos@gmail.com",
-            "fullName": "Carlos Silva",
-            "cityId": 5
-        },
-        {
-            "id": 16,
-            "email": "alfredo@gmail.com",
-            "fullName": "Alfredo Silva",
-            "cityId": 1
-        },
-        {
-            "id": 154,
-            "email": "pedro@gmail.com",
-            "fullName": "Pedro Silva",
-            "cityId": 1
-        },
-        {
-            "id": 156,
-            "email": "ana@gmail.com",
-            "fullName": "Ana Silva",
-            "cityId": "1"
-        },
-        {
-            "id": 157,
-            "email": "geronimo@gmail.com",
-            "fullName": "Geronimo",
-            "cityId": 5
-        }
-    ]
+  "people": [
+    {
+      "id": 1,
+      "email": "gabriela@teste.com",
+      "fullName": "Gabriela",
+      "cityId": 1
+    },
+    {
+      "id": 2,
+      "email": "richarlison@fifa.com",
+      "fullName": "Richarlison de Andrade",
+      "cityId": 9
+    },
+    {
+      "id": 3,
+      "email": "carlos@gmail.com",
+      "fullName": "Carlos Silva",
+      "cityId": 1
+    },
+    {
+      "id": 5,
+      "email": "alfredo@gmail.com",
+      "fullName": "Alfredo Pereira",
+      "cityId": 1
+    },
+    {
+      "id": 6,
+      "email": "Juca@gmail.com",
+      "fullName": "Juca Delgado",
+      "cityId": 1
+    },
+    {
+      "id": 7,
+      "email": "maria@gmail.com",
+      "fullName": "Maria Silva",
+      "cityId": 3
+    },
+    {
+      "id": 8,
+      "email": "carlos@gmail.com",
+      "fullName": "Carlos Silva",
+      "cityId": 1
+    },
+    {
+      "id": 9,
+      "email": "pedro@gmail.com",
+      "fullName": "Pedro Silva",
+      "cityId": 1
+    },
+    {
+      "id": 10,
+      "email": "alfredo@gmail.com",
+      "fullName": "Alfredo Silva",
+      "cityId": 5
+    },
+    {
+      "id": 11,
+      "email": "alfredo@gmail.com",
+      "fullName": "Alfredo Silva",
+      "cityId": 5
+    },
+    {
+      "id": 12,
+      "email": "Juca@gmail.com",
+      "fullName": "Juca Silva",
+      "cityId": 5
+    },
+    {
+      "id": 13,
+      "email": "maria@gmail.com",
+      "fullName": "Maria Silva",
+      "cityId": 5
+    },
+    {
+      "id": 14,
+      "email": "carlos@gmail.com",
+      "fullName": "Carlos Silva",
+      "cityId": 5
+    },
+    {
+      "id": 154,
+      "email": "pedro@gmail.com",
+      "fullName": "Pedro Silva",
+      "cityId": 1
+    }
+  ]
 }
