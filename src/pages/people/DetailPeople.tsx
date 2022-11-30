@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Form } from '@unform/web';
+
 import { DetailTool } from '../../shared/components';
 import { usePeopleContext } from '../../shared/contexts';
 import { LayoutPageBase } from '../../shared/layouts';
 import { PeopleService } from '../../shared/services/personApi';
+import { VTextField } from '../../shared/forms';
 
 
 export function DetailPeople(): JSX.Element {
@@ -70,6 +73,11 @@ export function DetailPeople(): JSX.Element {
         />
       }
     >
+      <Form onSubmit={(data) => console.log(data)}>
+        <VTextField name='Nome Completo' />
+        <VTextField name='email' />
+        <button type='submit'>manda lá</button>
+      </Form>
     </LayoutPageBase>
   );
 }
