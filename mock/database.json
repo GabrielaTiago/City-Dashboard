@@ -31,12 +31,6 @@
       "cityId": 1
     },
     {
-      "id": 7,
-      "email": "maria@gmail.com",
-      "fullName": "Maria Silva",
-      "cityId": 3
-    },
-    {
       "id": 8,
       "email": "carlos@gmail.com",
       "fullName": "Carlos Silva",

@@ -10,7 +10,7 @@ export function DetailPeople(): JSX.Element {
   const { id = 'nova' } = useParams<'id'>();
   const personId= Number(id);
   const navigate = useNavigate();
-  const { setIsLoading } = usePeopleContext();
+  const { isLoading, setIsLoading } = usePeopleContext();
   const [name, setName] = useState('');
   
   useEffect(() => { 
@@ -36,8 +36,20 @@ export function DetailPeople(): JSX.Element {
     // to do
   }
 
-  function handleDelete() {
-    // to do
+  function handleDelete(id: number) {
+    if(confirm('Realmente deseja apagar?')){
+        PeopleService.deleteById(id)
+          .then( res => {
+            console.log(res);
+            
+            if(res instanceof Error) {
+              alert(res.message);
+            } else {
+              alert('Registro apagado com sucesso');
+              navigate('/pessoas');
+            }
+          });
+      }
   }
 
   return (
@@ -52,7 +64,7 @@ export function DetailPeople(): JSX.Element {
 
           clickInSave={() => handleSave()}
           clickInSaveAndClose={() => handleSave()}
-          clickInDelete={() => handleDelete()}
+          clickInDelete={() => handleDelete(personId)}
           clickInNew={() => navigate('/pessoas/detalhe/nova')}
           clickInReturn={() => navigate('/pessoas')}
         />
