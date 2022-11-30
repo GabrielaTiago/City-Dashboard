@@ -5,12 +5,14 @@ import { LayoutPageBase } from '../../shared/layouts';
 import { PeopleService } from '../../shared/services/personApi';
 import { TableOfPeople } from './components/Table';
 import { usePeopleContext } from '../../shared/contexts';
+import { useNavigate } from 'react-router-dom';
 
 export function ListPeople(): JSX.Element {
   const delay: number = 500;
   const { debounce } = useDebounce(delay, true);
   const { setRows, setIsLoading, setTotalCount } = usePeopleContext();
   const { person, page, setSearchParams } = usePeopleContext();
+  const navigate = useNavigate();
   
   useEffect(() => {
     setIsLoading(true);
@@ -39,6 +41,7 @@ export function ListPeople(): JSX.Element {
           buttonText='Nova'
           searchInput
           searchText={person}
+          onClickButton={() => navigate('/pessoas/detalhe/nova')}
           onChangeSearchText={(text) => setSearchParams({ person: text, page: '1' }, { replace: true })}
         />
       }

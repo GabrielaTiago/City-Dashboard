@@ -13,6 +13,7 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { usePeopleContext } from '../../../shared/contexts';
 import { enviroment } from '../../../shared/environments';
 import { IListPerson, PeopleService } from '../../../shared/services/personApi';
@@ -20,6 +21,7 @@ import { IListPerson, PeopleService } from '../../../shared/services/personApi';
 export function TableOfPeople() {
   const { rows, setRows, isLoading, totalCount, page, setSearchParams } = usePeopleContext();
   const pagination = Math.ceil(totalCount / enviroment.LINE_LIMIT);
+  const navigate = useNavigate();
 
   function handleDelete(id: number) {
     if(confirm('Realemnte deseja apagar?')){
@@ -61,7 +63,7 @@ export function TableOfPeople() {
                       <IconButton size='small' color='error' onClick={() => handleDelete(row.id)}>
                         <DeleteForeverOutlined />
                       </IconButton>
-                      <IconButton size='small' color='success'>
+                      <IconButton size='small' color='success' onClick={() => navigate(`/pessoas/detalhe/${row.id}`)}>
                         <CreateOutlined />
                       </IconButton>
                     </>
