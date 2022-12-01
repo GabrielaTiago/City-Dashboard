@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Box, Grid, LinearProgress, Paper, Typography } from '@mui/material';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { DetailTool } from '../../shared/components';
@@ -37,7 +38,7 @@ export function DetailPeople(): JSX.Element {
             setName(res.fullName);
             formRef.current?.setData(res);
           }
-        })
+        });
     }
   }, [id]);
 
@@ -110,11 +111,56 @@ export function DetailPeople(): JSX.Element {
       }
     >
       <Form ref={formRef} onSubmit={(data) => handleSave(data)}>
-        <VTextField placeholder='Nome Completo' type='text' name='fullName' />
-        <VTextField placeholder='Email'name='email' type='email'/>
-        <VTextField placeholder='Cidade ID'name='cityId'type='text' />
-      </Form>
+        <Box
+          height='auto'
+          component={Paper}
+          variant='outlined'
+          display='flex'
+          flexDirection='column'
+          margin={1}
+        >
+          <Grid container direction='column' padding={2} spacing={2}>
 
+            <Grid item>
+              <Typography variant='h6'>Geral</Typography>
+            </Grid>
+            
+            <Grid container item>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={2}>
+                <VTextField
+                  fullWidth
+                  label='Nome Completo'
+                  type='text' 
+                  name='fullName' 
+                />
+              </Grid>
+            </Grid>
+
+            <Grid container item>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={2}>
+                <VTextField
+                  fullWidth
+                  label='Email'
+                  type='email'
+                  name='email'
+                />
+              </Grid>
+            </Grid>
+
+            <Grid container item>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={2}>
+                <VTextField
+                  fullWidth
+                  label='Cidade'
+                  type='text'
+                  name='cityId'
+                />
+              </Grid>
+            </Grid>
+            
+          </Grid>
+        </Box>
+      </Form>
     </LayoutPageBase>
   );
 }
