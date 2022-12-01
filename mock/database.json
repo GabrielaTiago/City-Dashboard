@@ -2,8 +2,8 @@
   "people": [
     {
       "id": 1,
-      "email": "gabriela@teste.com",
-      "fullName": "Gabriela",
+      "fullName": "Gabriela Tiago",
+      "email": "gabriela@teste",
       "cityId": 1
     },
     {
@@ -28,12 +28,6 @@
       "id": 6,
       "email": "Juca@gmail.com",
       "fullName": "Juca Delgado",
-      "cityId": 1
-    },
-    {
-      "id": 8,
-      "email": "carlos@gmail.com",
-      "fullName": "Carlos Silva",
       "cityId": 1
     },
     {
@@ -73,10 +67,22 @@
       "cityId": 5
     },
     {
-      "id": 154,
-      "email": "pedro@gmail.com",
-      "fullName": "Pedro Silva",
-      "cityId": 1
+      "id": 15,
+      "fullName": "Jonas Duarte",
+      "email": "jonas@gmail.com",
+      "cityId": "5"
+    },
+    {
+      "id": 16,
+      "fullName": "Neymar",
+      "email": "neymarjr@gmail.com",
+      "cityId": 4
+    },
+    {
+      "id": 17,
+      "fullName": "Kaka",
+      "email": "kaka@gmail.com",
+      "cityId": 6
     }
   ]
 }

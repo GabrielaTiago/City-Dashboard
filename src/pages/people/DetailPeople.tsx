@@ -1,13 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Form } from '@unform/web';
-
+import { FormHandles } from '@unform/core';
 import { DetailTool } from '../../shared/components';
 import { usePeopleContext } from '../../shared/contexts';
 import { LayoutPageBase } from '../../shared/layouts';
 import { PeopleService } from '../../shared/services/personApi';
 import { VTextField } from '../../shared/forms';
 
+interface IFormData {
+  fullName: string;
+  email: string;
+  cityId: number;
+}
 
 export function DetailPeople(): JSX.Element {
   const { id = 'nova' } = useParams<'id'>();
@@ -15,12 +20,12 @@ export function DetailPeople(): JSX.Element {
   const navigate = useNavigate();
   const { isLoading, setIsLoading } = usePeopleContext();
   const [name, setName] = useState('');
+  const formRef = useRef<FormHandles>(null);
   
   useEffect(() => { 
     setIsLoading(true);
 
     if( id !== 'nova') {
-
       PeopleService.getById(personId)
         .then(res => {
           setIsLoading(false);
@@ -30,29 +35,60 @@ export function DetailPeople(): JSX.Element {
             navigate('/pessoas');
           } else {
             setName(res.fullName);
+            formRef.current?.setData(res);
           }
         })
     }
   }, [id]);
 
-  function handleSave() {
-    // to do
+  function handleSave(data: IFormData) {
+    setIsLoading(true);
+
+    const city = Number(data.cityId);
+
+    if(id === 'nova') {
+      PeopleService
+        .create({...data, cityId: city})
+        .then(res => {
+          setIsLoading(false);
+          
+          if(res instanceof Error) {
+            alert(res.message);
+          } else {
+            navigate(`/pessoas/detalhe/${res}`);
+          }
+        });
+    } else {
+      PeopleService
+        .updateById(personId, { id: personId, ...data, cityId: city })
+        .then(res => {
+          setIsLoading(false);
+          
+          if(res instanceof Error) {
+            alert(res.message);
+          } else {
+            alert('Usuário atualizado com sucesso');
+          }
+        });
+    }
   }
 
   function handleDelete(id: number) {
+    setIsLoading(true);
+
     if(confirm('Realmente deseja apagar?')){
-        PeopleService.deleteById(id)
-          .then( res => {
-            console.log(res);
-            
-            if(res instanceof Error) {
-              alert(res.message);
-            } else {
-              alert('Registro apagado com sucesso');
-              navigate('/pessoas');
-            }
-          });
-      }
+      PeopleService.deleteById(id)
+        .then( res => {        
+          setIsLoading(false);
+
+          if(res instanceof Error) {
+            alert(res.message);
+          } else {
+            alert('Registro apagado com sucesso');
+            navigate('/pessoas');
+          }
+        });
+    }
   }
 
   return (
@@ -65,19 +101,20 @@ export function DetailPeople(): JSX.Element {
           displayNewButton={id !== 'nova'}
           displayDeleteButton={id !== 'nova'}
 
-          clickInSave={() => handleSave()}
-          clickInSaveAndClose={() => handleSave()}
+          clickInSave={() => formRef.current?.submitForm()}
+          clickInSaveAndClose={() => formRef.current?.submitForm()}
           clickInDelete={() => handleDelete(personId)}
           clickInNew={() => navigate('/pessoas/detalhe/nova')}
           clickInReturn={() => navigate('/pessoas')}
         />
       }
     >
-      <Form onSubmit={(data) => console.log(data)}>
-        <VTextField name='Nome Completo' />
-        <VTextField name='email' />
-        <button type='submit'>manda lá</button>
+      <Form ref={formRef} onSubmit={(data) => handleSave(data)}>
+        <VTextField placeholder='Nome Completo' type='text' name='fullName' />
+        <VTextField placeholder='Email'name='email' type='email'/>
+        <VTextField placeholder='Cidade ID'name='cityId'type='text' />
       </Form>
+
     </LayoutPageBase>
   );
 }
