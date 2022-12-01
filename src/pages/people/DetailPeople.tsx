@@ -39,6 +39,14 @@ export function DetailPeople(): JSX.Element {
             formRef.current?.setData(res);
           }
         });
+    } else {
+        setIsLoading(false);
+
+        formRef.current?.setData({
+          fullName: '',
+          email: '',
+          cityId: ''
+        });
     }
   }, [id]);
 
@@ -121,6 +129,12 @@ export function DetailPeople(): JSX.Element {
         >
           <Grid container direction='column' padding={2} spacing={2}>
 
+            {isLoading && (
+              <Grid item>
+                 <LinearProgress variant='indeterminate'></LinearProgress>
+              </Grid>
+            )}
+            
             <Grid item>
               <Typography variant='h6'>Geral</Typography>
             </Grid>
@@ -132,6 +146,7 @@ export function DetailPeople(): JSX.Element {
                   label='Nome Completo'
                   type='text' 
                   name='fullName' 
+                  disabled={isLoading}
                 />
               </Grid>
             </Grid>
@@ -143,6 +158,7 @@ export function DetailPeople(): JSX.Element {
                   label='Email'
                   type='email'
                   name='email'
+                  disabled={isLoading}
                 />
               </Grid>
             </Grid>
@@ -154,6 +170,7 @@ export function DetailPeople(): JSX.Element {
                   label='Cidade'
                   type='text'
                   name='cityId'
+                  disabled={isLoading}
                 />
               </Grid>
             </Grid>
