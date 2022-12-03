@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Grid, LinearProgress, Paper, Typography } from '@mui/material';
-import { Form } from '@unform/web';
-import { FormHandles } from '@unform/core';
+
 import { DetailTool } from '../../shared/components';
 import { usePeopleContext } from '../../shared/contexts';
 import { LayoutPageBase } from '../../shared/layouts';
 import { PeopleService } from '../../shared/services/personApi';
-import { VTextField } from '../../shared/forms';
+import { VForm, VTextField } from '../../shared/forms';
+import { useForm } from '../../shared/hooks';
 
 interface IFormData {
   fullName: string;
@@ -21,7 +21,7 @@ export function DetailPeople(): JSX.Element {
   const navigate = useNavigate();
   const { isLoading, setIsLoading } = usePeopleContext();
   const [name, setName] = useState('');
-  const formRef = useRef<FormHandles>(null);
+  const { formRef, save, saveAndClose, isSaveAndClose } = useForm();
   
   useEffect(() => { 
     setIsLoading(true);
@@ -64,7 +64,11 @@ export function DetailPeople(): JSX.Element {
           if(res instanceof Error) {
             alert(res.message);
           } else {
-            navigate(`/pessoas/detalhe/${res}`);
+            if (isSaveAndClose()) {
+              navigate('/pessoas');
+            } else {
+              navigate(`/pessoas/detalhe/${res}`);  
+            }
           }
         });
     } else {
@@ -76,7 +80,10 @@ export function DetailPeople(): JSX.Element {
           if(res instanceof Error) {
             alert(res.message);
           } else {
-            alert('Usuário atualizado com sucesso');
+            if (isSaveAndClose()) {
+              alert('Usuário atualizado com sucesso');
+              navigate('/pessoas');
+            } 
           }
         });
     }
@@ -110,15 +117,15 @@ export function DetailPeople(): JSX.Element {
           displayNewButton={id !== 'nova'}
           displayDeleteButton={id !== 'nova'}
 
-          clickInSave={() => formRef.current?.submitForm()}
-          clickInSaveAndClose={() => formRef.current?.submitForm()}
+          clickInSave={() => save()}
+          clickInSaveAndClose={saveAndClose}
           clickInDelete={() => handleDelete(personId)}
           clickInNew={() => navigate('/pessoas/detalhe/nova')}
           clickInReturn={() => navigate('/pessoas')}
         />
       }
     >
-      <Form ref={formRef} onSubmit={(data) => handleSave(data)}>
+      <VForm ref={formRef} onSubmit={(data) => handleSave(data)}>
         <Box
           height='auto'
           component={Paper}
@@ -177,7 +184,7 @@ export function DetailPeople(): JSX.Element {
             
           </Grid>
         </Box>
-      </Form>
+      </VForm>
     </LayoutPageBase>
   );
 }

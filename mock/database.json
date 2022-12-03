@@ -56,9 +56,9 @@
     },
     {
       "id": 13,
-      "email": "maria@gmail.com",
       "fullName": "Maria Silva",
-      "cityId": 5
+      "email": "maria@gmail.com",
+      "cityId": 8
     },
     {
       "id": 14,
@@ -83,6 +83,12 @@
       "fullName": "Kaka",
       "email": "kaka@gmail.com",
       "cityId": 6
+    },
+    {
+      "fullName": "Joana",
+      "email": "joana@teste.com",
+      "cityId": 6,
+      "id": 18
     }
   ]
 }
