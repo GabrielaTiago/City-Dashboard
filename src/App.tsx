@@ -1,7 +1,13 @@
 import { BrowserRouter } from 'react-router-dom';
 import './shared/forms/translationYup';
 
-import { AppThemeProvider, DrawerProvider, PeopleProvider } from './shared/contexts';
+import { 
+  AppThemeProvider,
+  CitiesProvider,
+  DrawerProvider,
+  PeopleProvider
+} from './shared/contexts';
+
 import { Sidebar } from './shared/components';
 
 import AppRoutes from './routes';
@@ -11,11 +17,13 @@ function App() {
     <AppThemeProvider>
         <DrawerProvider>
           <BrowserRouter>
-            <PeopleProvider>
-              <Sidebar>
-                <AppRoutes />
-              </Sidebar>
-            </PeopleProvider>
+            <CitiesProvider>
+              <PeopleProvider>
+                <Sidebar>
+                  <AppRoutes />
+                </Sidebar>
+              </PeopleProvider>
+            </CitiesProvider>
           </BrowserRouter>
         </DrawerProvider>
       </AppThemeProvider>

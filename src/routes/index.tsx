@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { 
   Dashboard, 
-  DetailPeople, 
+  DetailPeople,
+  DetailCities,
   ListCities, 
   ListPeople
 } from '../pages';
@@ -36,7 +37,7 @@ export default function AppRoutes() {
       <Route path='/' element={<Dashboard />} />
 
       <Route path='/cidades' element={<ListCities />} />
-      {/* <Route path='/cidades/detalhe/:id' element={<Dashboard />} /> */}
+      <Route path='/cidades/detalhe/:id' element={<DetailCities />} />
 
       <Route path='/pessoas' element={<ListPeople />} />
       <Route path='/pessoas/detalhe/:id' element={<DetailPeople />} />

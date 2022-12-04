@@ -38,9 +38,9 @@
     },
     {
       "id": 10,
+      "cityId": 9,
       "email": "alfredo@gmail.com",
-      "fullName": "Alfredo Silva",
-      "cityId": 5
+      "fullName": "Alfredo Silva"
     },
     {
       "id": 11,
@@ -85,10 +85,64 @@
       "cityId": 6
     },
     {
-      "fullName": "Joana",
-      "email": "joana@teste.com",
-      "cityId": 6,
-      "id": 18
+      "id": 19,
+      "fullName": "Casemiro",
+      "email": "",
+      "cityId": 4
+    },
+    {
+      "cityId": 1,
+      "email": "alissonbecker@fifa.com",
+      "fullName": "Alisson Becker",
+      "id": 20
+    },
+    {
+      "id": 21,
+      "cityId": 21,
+      "email": "pedro@fifa.com",
+      "fullName": "Pedro Guilherme Abreu dos Santos"
+    }
+  ],
+  "city": [
+    {
+      "id": 1,
+      "state": "Goiás",
+      "name": "Anápolis"
+    },
+    {
+      "id": 2,
+      "state": "Goiás",
+      "name": "Goiânia"
+    },
+    {
+      "id": 3,
+      "state": "Distrito Federal",
+      "name": "Brasília"
+    },
+    {
+      "id": 4,
+      "name": "Porto Alegre",
+      "state": "Rio Grande do Sul"
+    },
+    {
+      "id": 5,
+      "state": "São Paulo",
+      "name": "São Paulo"
+    },
+    {
+      "id": 6,
+      "state": "Ceará",
+      "name": "Fortaleza"
+    },
+    {
+      "id": 7,
+      "state": "Mato Grosso",
+      "name": "Cuiabá"
+    },
+    {
+      "id": 8,
+      "state": "Rio de Janeiro",
+      "name": "Rio de Janeiro"
     }
   ]
 }
