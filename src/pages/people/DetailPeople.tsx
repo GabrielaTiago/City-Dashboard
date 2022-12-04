@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Grid, LinearProgress, Paper, Typography } from '@mui/material';
+import * as yup from 'yup';
 
 import { DetailTool } from '../../shared/components';
 import { usePeopleContext } from '../../shared/contexts';
 import { LayoutPageBase } from '../../shared/layouts';
 import { PeopleService } from '../../shared/services/personApi';
-import { VForm, VTextField } from '../../shared/forms';
+import { IVFormErrors, VForm, VTextField } from '../../shared/forms';
 import { useForm } from '../../shared/hooks';
+import { personValidationSchema } from '../../shared/schemas';
 
-interface IFormData {
+export interface IFormData {
   fullName: string;
   email: string;
   cityId: number;
@@ -51,8 +53,28 @@ export function DetailPeople(): JSX.Element {
   }, [id]);
 
   function handleSave(data: IFormData) {
-    setIsLoading(true);
+    personValidationSchema
+      .validate(data, { abortEarly: false })
+      .then((validData) => {
+        saveOrUpdate(validData);
+      })
+      .catch((err:  yup.ValidationError) => {
+        const validationErrors: IVFormErrors = {};
 
+        err.inner.forEach(error => {
+          if(!error.path) return;
+
+          validationErrors[error.path] = error.message;
+        });
+
+        console.log(validationErrors);
+        formRef.current?.setErrors(validationErrors);
+      });
+  }
+
+  function saveOrUpdate(data: IFormData) {
+    setIsLoading(true);
+      
     const city = Number(data.cityId);
 
     if(id === 'nova') {
@@ -118,7 +140,7 @@ export function DetailPeople(): JSX.Element {
           displayDeleteButton={id !== 'nova'}
 
           clickInSave={() => save()}
-          clickInSaveAndClose={saveAndClose}
+          clickInSaveAndClose={() => saveAndClose()}
           clickInDelete={() => handleDelete(personId)}
           clickInNew={() => navigate('/pessoas/detalhe/nova')}
           clickInReturn={() => navigate('/pessoas')}
