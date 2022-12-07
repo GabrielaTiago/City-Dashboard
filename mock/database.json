@@ -8,9 +8,9 @@
     },
     {
       "id": 2,
-      "email": "richarlison@fifa.com",
       "fullName": "Richarlison de Andrade",
-      "cityId": 9
+      "email": "richarlison@fifa.com",
+      "cityId": 7
     },
     {
       "id": 3,
@@ -26,9 +26,9 @@
     },
     {
       "id": 6,
-      "email": "Juca@gmail.com",
       "fullName": "Juca Delgado",
-      "cityId": 1
+      "email": "Juca@gmail.com",
+      "cityId": 5
     },
     {
       "id": 9,
@@ -144,5 +144,8 @@
       "state": "Rio de Janeiro",
       "name": "Rio de Janeiro"
     }
-  ]
+  ],
+  "auth": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+  }
 }
