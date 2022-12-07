@@ -2,7 +2,7 @@ export const enviroment =  {
   /*
     - Defines the number of rows to be loaded by default in the lists
   */
-    LINE_LIMIT: 7,
+    LINE_LIMIT: 5,
   /*
     - Placeholder displayed in the inputs
   */

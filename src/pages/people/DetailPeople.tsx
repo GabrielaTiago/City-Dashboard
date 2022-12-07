@@ -10,6 +10,7 @@ import { PeopleService } from '../../shared/services/personApi';
 import { IVFormErrors, VForm, VTextField } from '../../shared/forms';
 import { useForm } from '../../shared/hooks';
 import { personValidationSchema } from '../../shared/schemas';
+import { AutoComplete } from './components/AutoComplete';
 
 export interface IFormData {
   fullName: string;
@@ -194,13 +195,7 @@ export function DetailPeople(): JSX.Element {
 
             <Grid container item>
               <Grid item xs={12} sm={12} md={6} lg={4} xl={2}>
-                <VTextField
-                  fullWidth
-                  label='Cidade'
-                  type='text'
-                  name='cityId'
-                  disabled={isLoading}
-                />
+                <AutoComplete />
               </Grid>
             </Grid>
             
