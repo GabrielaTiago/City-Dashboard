@@ -3,6 +3,7 @@ import './shared/forms/translationYup';
 
 import { 
   AppThemeProvider,
+  AuthProvider,
   CitiesProvider,
   DrawerProvider,
   PeopleProvider
@@ -14,7 +15,8 @@ import AppRoutes from './routes';
 
 function App() {
   return (
-    <AppThemeProvider>
+    <AuthProvider>
+      <AppThemeProvider>
         <DrawerProvider>
           <BrowserRouter>
             <CitiesProvider>
@@ -27,6 +29,7 @@ function App() {
           </BrowserRouter>
         </DrawerProvider>
       </AppThemeProvider>
+    </AuthProvider>
   );
 }
 
