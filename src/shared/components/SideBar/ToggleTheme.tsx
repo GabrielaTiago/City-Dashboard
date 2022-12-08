@@ -5,9 +5,10 @@ import Switch from '@mui/material/Switch';
 import { useThemeContext } from '../../contexts';
 
 const SwitchTheme = styled(Switch)(({ theme }) => ({
-  width: 62,
-  height: 34,
+  width: 51,
+  height: 29,
   padding: 8,
+  marginRight: 16,
   '& .MuiSwitch-switchBase': {
     margin: 1,
     padding: 0,
@@ -28,8 +29,8 @@ const SwitchTheme = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-thumb': {
     backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
-    width: 32,
-    height: 32,
+    width: 24,
+    height: 24,
     '&:before': {
       content: '""',
       position: 'absolute',
@@ -53,8 +54,9 @@ const SwitchTheme = styled(Switch)(({ theme }) => ({
 
 export default function ToggleTheme() {
   const { toggleTheme } = useThemeContext();
+
   return (
-    <FormGroup>
+    <FormGroup sx={{ my: 0.5, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <FormControlLabel
         control={<SwitchTheme onChange={toggleTheme} />}
         label="Mudar Tema"
