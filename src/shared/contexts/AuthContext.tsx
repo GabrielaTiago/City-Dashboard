@@ -1,10 +1,10 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { AuthService } from '../services/auth/authApi';
+import { AuthService, ILoginData } from '../services/auth/authApi';
 import { TChildrenProps } from '../types';
 
 interface IAuthContextData {
   isAuthenticaded: boolean;
-  login: (email: string, password: string) => Promise<string | void>
+  login: (data: ILoginData) => Promise<string | void>
   logout: () => void;
 };
 
@@ -27,8 +27,8 @@ export function AuthProvider({ children }: TChildrenProps) {
     }
   }, []);
 
-  const handleLogin = useCallback(async (email: string, password: string) => {
-    const result = await AuthService.auth(email, password);
+  const handleLogin = useCallback(async (data: ILoginData) => {
+    const result = await AuthService.signIn(data);
 
     if(result instanceof Error){
       return result.message;

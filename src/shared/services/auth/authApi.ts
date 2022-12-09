@@ -4,9 +4,14 @@ interface IAuth {
     accessToken: string;
 }
 
-export async function auth(email: string, password: string): Promise<IAuth | Error> {
+export interface ILoginData {
+  email: string;
+  password: string;
+}
+
+export async function signIn(body: ILoginData): Promise<IAuth | Error> {
   try {
-    const { data } = await instance.get('/auth', { data: { email, password } });
+    const { data } = await instance.get('/auth', { data: body });
 
     if(data) {
       return data; 
@@ -19,4 +24,4 @@ export async function auth(email: string, password: string): Promise<IAuth | Err
   } 
 }
 
-export const AuthService = { auth };
+export const AuthService = { signIn };
