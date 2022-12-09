@@ -8,7 +8,7 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
-import { useDrawerContext } from '../../contexts';
+import { useAuthContext, useDrawerContext } from '../../contexts';
 import { TChildrenProps } from '../../types';
 import { MenuItem } from './MenuItem';
 import ToggleTheme from './ToggleTheme';
@@ -17,6 +17,7 @@ export function Sidebar({ children }: TChildrenProps): JSX.Element{
   const theme = useTheme();
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
   const { isDrawerOpen, toggleDrawer, drawerOptions } = useDrawerContext();
+  const { logout } = useAuthContext();
 
   return (
     <>
@@ -46,6 +47,9 @@ export function Sidebar({ children }: TChildrenProps): JSX.Element{
           <ListItemButton sx={{ flexGrow: 0 }}>
             <ToggleTheme />
           </ListItemButton>
+          <Box>
+            <MenuItem to='/login' icon='logout' label='Sair' onClick={logout}/>
+          </Box>
         </Box>
       </Drawer>
       <Box height='100vw' marginLeft={smDown ? 0 : theme.spacing(28)}>
