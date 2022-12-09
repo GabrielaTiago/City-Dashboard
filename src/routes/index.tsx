@@ -5,7 +5,8 @@ import {
   DetailPeople,
   DetailCities,
   ListCities, 
-  ListPeople
+  ListPeople,
+  LoginPage
 } from '../pages';
 import { useDrawerContext } from '../shared/contexts';
 
@@ -34,6 +35,7 @@ export default function AppRoutes() {
 
   return (
     <Routes>
+      <Route path='/login' element={<LoginPage />} />
       <Route path='/' element={<Dashboard />} />
 
       <Route path='/cidades' element={<ListCities />} />

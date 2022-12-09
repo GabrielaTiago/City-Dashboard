@@ -9,7 +9,7 @@ import {
   PeopleProvider
 } from './shared/contexts';
 
-import { Sidebar } from './shared/components';
+import { Login, Sidebar } from './shared/components';
 
 import AppRoutes from './routes';
 
@@ -19,17 +19,19 @@ function App() {
       <AppThemeProvider>
         <DrawerProvider>
           <BrowserRouter>
-            <CitiesProvider>
-              <PeopleProvider>
-                <Sidebar>
-                  <AppRoutes />
-                </Sidebar>
-              </PeopleProvider>
-            </CitiesProvider>
+            <Login>
+              <CitiesProvider>
+                <PeopleProvider>
+                  <Sidebar>
+                    <AppRoutes />
+                  </Sidebar>
+                </PeopleProvider>
+              </CitiesProvider>
+            </Login>
           </BrowserRouter>
         </DrawerProvider>
       </AppThemeProvider>
-    </AuthProvider>
+   </AuthProvider>
   );
 }
 
